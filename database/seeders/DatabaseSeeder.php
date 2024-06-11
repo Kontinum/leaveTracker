@@ -2,10 +2,12 @@
 
 namespace Database\Seeders;
 
+use App\Enums\UserTypes;
 use App\Models\User;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
 
 class DatabaseSeeder extends Seeder
 {
@@ -68,6 +70,15 @@ class DatabaseSeeder extends Seeder
                 'created_at' => now(),
                 'updated_at' => now()
             ],
+        ]);
+
+        DB::table('users')->insert([
+            'user_type_id' => UserTypes::ADMIN->value,
+            'name' => 'admin',
+            'email' => 'admin@leavetracker.com',
+            'password' => Hash::make('123123'),
+            'created_at' => now(),
+            'updated_at' => now()
         ]);
     }
 }
