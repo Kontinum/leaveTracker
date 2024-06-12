@@ -2,11 +2,13 @@
 
 namespace App\Repositories;
 
+use App\Enums\LeaveStatuses;
 use App\Enums\UserTypes;
 use App\Models\Team;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Support\Facades\DB;
 
 class UsersRepository
 {
@@ -68,5 +70,24 @@ class UsersRepository
             ->whereNull('team_id')
             ->get();
 
+    }
+
+    /**
+     * For a given userId retrieve all users within the same team including leaves data
+     * @param int $userId
+     * @return Collection
+     */
+    public function getUserTeamLeavesData(int $userId, array $leaveStatuses): Collection
+    {
+        $rawSqlString = 'select team_id from users where id = ?';
+
+        return $this->getModel()::with(['leaves' => function ($query) use ($leaveStatuses) {
+            $query->whereIn('leave_status_id', $leaveStatuses);
+        }])
+            ->whereHas('leaves', function (Builder $query) use ($leaveStatuses) {
+                $query->whereIn('leave_status_id', $leaveStatuses);
+            })
+            ->where('team_id', '=', DB::select($rawSqlString,  [$userId])[0]->team_id)
+            ->get();
     }
 }

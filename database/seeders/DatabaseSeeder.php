@@ -66,7 +66,7 @@ class DatabaseSeeder extends Seeder
                 'updated_at' => now()
             ],
             [
-                'status' => 'day_off',
+                'status' => 'on_hold',
                 'created_at' => now(),
                 'updated_at' => now()
             ],

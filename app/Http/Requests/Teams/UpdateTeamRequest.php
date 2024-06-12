@@ -23,7 +23,7 @@ class UpdateTeamRequest extends FormRequest
     {
         return [
             'team_data' => 'sometimes|array|required',
-            'team_data.name' => 'sometimes|string|required|unique:teams,name',
+            'team_data.name' => 'sometimes|string|required',
             'user_ids' => 'sometimes|array|required',
             'user_ids.*' => 'sometimes|int|required',
         ];

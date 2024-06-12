@@ -14,7 +14,7 @@ return new class extends Migration
         if (!Schema::hasTable('teams')) {
             Schema::create('teams', function (Blueprint $table) {
                 $table->bigIncrements('id');
-                $table->string('name')->unique();
+                $table->string('name');
                 $table->timestamps();
             });
         }

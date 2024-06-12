@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Requests\Teams;
+namespace App\Http\Requests\Leaves;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class SaveTeamRequest extends FormRequest
+class ChangeLeaveStatusRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -22,10 +22,7 @@ class SaveTeamRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'team_data' => 'array|required',
-            'team_data.name' => 'string|required',
-            'user_ids' => 'array|required',
-            'user_ids.*' => 'int|required',
+            'leave_status_id' => 'int|required|exists:leave_statuses,id'
         ];
     }
 }
