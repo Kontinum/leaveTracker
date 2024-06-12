@@ -29,7 +29,6 @@ class LeavesController extends Controller
 
     /**
      * @param CreateLeaveRequest $createLeaveRequest
-     * @param LeaveService $leaveService
      * @return JsonResponse
      * @throws ApiResponseException
      */

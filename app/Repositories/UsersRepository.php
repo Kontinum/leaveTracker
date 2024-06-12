@@ -2,7 +2,6 @@
 
 namespace App\Repositories;
 
-use App\Enums\LeaveStatuses;
 use App\Enums\UserTypes;
 use App\Models\Team;
 use App\Models\User;
@@ -75,6 +74,7 @@ class UsersRepository
     /**
      * For a given userId retrieve all users within the same team including leaves data
      * @param int $userId
+     * @param array $leaveStatuses
      * @return Collection
      */
     public function getUserTeamLeavesData(int $userId, array $leaveStatuses): Collection

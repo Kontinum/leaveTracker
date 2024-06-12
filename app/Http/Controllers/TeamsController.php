@@ -54,7 +54,13 @@ class TeamsController extends Controller
         }
     }
 
-    public function update(UpdateTeamRequest $updateTeamRequest, Team $team)
+    /**
+     * @param UpdateTeamRequest $updateTeamRequest
+     * @param Team $team
+     * @return JsonResponse
+     * @throws ApiResponseException
+     */
+    public function update(UpdateTeamRequest $updateTeamRequest, Team $team): JsonResponse
     {
         try {
             DB::beginTransaction();
